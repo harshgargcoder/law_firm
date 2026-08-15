@@ -9,7 +9,3 @@ coverage
 .env.development.local
 .env.test.local
 .env.production.local
-
-# Private portrait assets
-/public/images/shivam.jpeg
-/public/images/shivam_kumar_portrait.jpg

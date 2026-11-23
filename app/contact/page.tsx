@@ -1,5 +1,12 @@
 import { ChamberHero } from '@/components/chamber-hero'
 import { PageFooter } from '@/components/site-frame'
+import { pageMetadata } from '@/lib/seo'
+
+export const metadata = pageMetadata(
+  'Contact a Senior Advocate in New Delhi',
+  'Contact Shivam Kumar Law Office at Ferozshah Road, New Delhi, for legal representation, litigation counsel, and professional enquiries.',
+  '/contact',
+)
 
 export default function ContactPage() {
   return (
@@ -8,11 +15,9 @@ export default function ContactPage() {
         eyebrow="Get in touch"
         title="Contact the chamber"
         subtitle="Speak with our legal experts. Shivam Kumar Law Office provides professional representation and advocacy in New Delhi."
-        primaryHref="/"
-        primaryLabel="Back home"
-        secondaryHref="/the-team"
-        secondaryLabel="The team"
-        background="/images/contact_office.png"
+        primaryHref="/the-team"
+        primaryLabel="Meet the team"
+        background="/images/contact_office.webp"
       />
 
       <section className="section contact-banner contact-banner--page">

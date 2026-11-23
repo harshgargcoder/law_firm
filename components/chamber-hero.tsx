@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { AnchorScrollLink } from '@/components/anchor-scroll-link'
 
 type ChamberHeroProps = {
   eyebrow: string
@@ -32,16 +32,16 @@ export function ChamberHero({
 
       <div className="chamber-hero__content">
         <p className="eyebrow">{eyebrow}</p>
-        <h2>{title}</h2>
+        <h1>{title}</h1>
         <p className="hero__lede">{subtitle}</p>
         <div className="hero__actions">
-          <Link className="button button--gold" href={primaryHref}>
+          <AnchorScrollLink className="button button--gold" href={primaryHref}>
             {primaryLabel}
-          </Link>
+          </AnchorScrollLink>
           {secondaryHref ? (
-            <Link className="button button--ghost" href={secondaryHref}>
+            <AnchorScrollLink className="button button--ghost" href={secondaryHref}>
               {secondaryLabel}
-            </Link>
+            </AnchorScrollLink>
           ) : null}
         </div>
       </div>

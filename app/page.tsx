@@ -1,11 +1,18 @@
 import { ChamberHero } from '@/components/chamber-hero'
 import { PageFooter } from '@/components/site-frame'
-import { chamberNotes, highlights, internships, team } from '@/lib/site-content'
+import { chamberNotes, highlights, internships, shivamMilestones, team } from '@/lib/site-content'
+import { pageMetadata } from '@/lib/seo'
 
-const heroBg = '/images/courtroom_hero.png'
-const profileBg = '/images/shivam.jpeg'
-const profileBg2 = '/images/law_library.png'
-const internshipBg = '/images/internship_study.png'
+export const metadata = pageMetadata(
+  'Senior Advocate and Litigation Counsel in New Delhi',
+  'Shivam Kumar Law Office represents clients in constitutional, civil, commercial, and tribunal matters before courts in New Delhi and across India.',
+  '/',
+)
+
+const heroBg = '/images/courtroom_hero.webp'
+const profileBg = '/images/shivam.webp'
+const profileBg2 = '/images/law_library.webp'
+const internshipBg = '/images/internship_study.webp'
 
 export default function HomePage() {
   return (
@@ -16,8 +23,8 @@ export default function HomePage() {
         subtitle="Distinguished advocacy, litigation excellence, and strategic legal counsel across courts in New Delhi."
         primaryHref="/contact"
         primaryLabel="Contact us today"
-        secondaryHref="/shivam-kumar"
-        secondaryLabel="Know more"
+        secondaryHref="/services"
+        secondaryLabel="Our services"
         background={heroBg}
       />
 
@@ -49,18 +56,14 @@ export default function HomePage() {
           <p className="eyebrow">Senior advocate</p>
           <h3>Mr. Shivam Kumar</h3>
           <ul className="timeline timeline--light">
-            <li>
-              <strong>1988</strong> LL.B. (First Class), Faculty of Law, University of Delhi
-            </li>
-            <li>
-              <strong>1990</strong> LL.M., Harvard Law School, specializing in Constitutional Law
-            </li>
-            <li>
-              <strong>2008</strong> Designated Senior Advocate by the High Court of Delhi
-            </li>
-            <li>
-              <strong>2018</strong> Appointed as Amicus Curiae in complex constitutional bench matters
-            </li>
+            {shivamMilestones.map((milestone) => {
+              const [year, ...details] = milestone.split(' - ')
+              return (
+                <li key={milestone}>
+                  <strong>{year}</strong> {details.join(' - ')}
+                </li>
+              )
+            })}
           </ul>
         </div>
       </section>
@@ -91,7 +94,7 @@ export default function HomePage() {
             <article className="team-strip__card" key={member.name}>
               <div
                 className="team-strip__photo"
-                style={{ backgroundImage: `url(https://i.pravatar.cc/400?img=${48 + index * 3})` }}
+                style={{ backgroundImage: `url(${index % 2 === 0 ? '/images/team_advocate_1.webp' : '/images/team_advocate_2.webp'})` }}
                 aria-hidden="true"
               />
               <h4>{member.name}</h4>

@@ -10,7 +10,7 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/the-team', label: 'The Team' },
   { href: '/internship', label: 'Internship' },
-  { href: '/shivam-kumar', label: 'Shivam Kumar' },
+  { href: '/services', label: 'Services' },
   { href: '/life-at-chamber', label: 'Life at Chamber' },
   { href: '/contact', label: 'Contact' },
 ]
@@ -22,6 +22,19 @@ export function SiteFrame({
 }>) {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isAtTop, setIsAtTop] = useState(true)
+  const scrollToPosition = () => {
+    const bottom = document.documentElement.scrollHeight - window.innerHeight
+    const shouldGoToBottom = isAtTop
+
+    // Update the direction immediately so repeated clicks during smooth scrolling
+    // always toggle between the top and bottom targets.
+    setIsAtTop(!shouldGoToBottom)
+    window.scrollTo({
+      top: shouldGoToBottom ? Math.max(0, bottom) : 0,
+      behavior: 'smooth',
+    })
+  }
   const isActiveLink = (href: string) => {
     if (href === '/') return pathname === '/'
     return pathname === href || pathname.startsWith(`${href}/`)
@@ -31,17 +44,30 @@ export function SiteFrame({
     setMobileMenuOpen(false)
 
     // Dynamic Scroll-Driven CSS Variables
-    const handleScroll = () => {
+    let frameId: number | null = null
+
+    const updateScrollState = () => {
       const scrollY = window.scrollY
       const docHeight = document.documentElement.scrollHeight - window.innerHeight
       const scrollPercent = docHeight > 0 ? (scrollY / docHeight) * 100 : 0
       
       document.documentElement.style.setProperty('--scroll-y', `${scrollY}px`)
       document.documentElement.style.setProperty('--scroll-percent', `${scrollPercent}%`)
+      const nextIsAtTop = scrollY <= 20
+      setIsAtTop((current) => current === nextIsAtTop ? current : nextIsAtTop)
+    }
+
+    const handleScroll = () => {
+      if (frameId !== null) return
+
+      frameId = window.requestAnimationFrame(() => {
+        frameId = null
+        updateScrollState()
+      })
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
+    updateScrollState()
 
     // Intersection Observer for Smooth Reveal Animations
     const observer = new IntersectionObserver(
@@ -80,6 +106,7 @@ export function SiteFrame({
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
+      if (frameId !== null) window.cancelAnimationFrame(frameId)
       elements.forEach((el) => {
         observer.unobserve(el)
         el.classList.remove('is-revealed')
@@ -96,7 +123,7 @@ export function SiteFrame({
         <div className="topbar__inner">
           <Link className="topbar__brand" href="/" aria-label="Shivam Kumar Law Office home">
             <Image
-              src="/images/shivam-kumar-law-office-logo.png"
+              src="/images/shivam-kumar-law-office-logo.webp"
               alt="Shivam Kumar Law Office logo"
               width={52}
               height={52}
@@ -105,7 +132,7 @@ export function SiteFrame({
             />
             <div className="topbar__brand-copy">
               <p>Shivam Kumar</p>
-              <h1>Law Office</h1>
+              <p className="topbar__brand-title">Law Office</p>
             </div>
           </Link>
 
@@ -158,6 +185,22 @@ export function SiteFrame({
       </header>
 
       {children}
+
+      <button
+        type="button"
+        className="scroll-to-top"
+        onClick={scrollToPosition}
+        aria-label={isAtTop ? 'Scroll to bottom' : 'Scroll to top'}
+        title={isAtTop ? 'Scroll to bottom' : 'Scroll to top'}
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          {isAtTop ? (
+            <path d="m6.7 9.3 5.3 5.4 5.3-5.4 1.4 1.4-6.7 6.7-6.7-6.7 1.4-1.4Z" />
+          ) : (
+            <path d="m6.7 14.7 5.3-5.4 5.3 5.4 1.4-1.4-6.7-6.7-6.7 6.7 1.4 1.4Z" />
+          )}
+        </svg>
+      </button>
     </>
   )
 }

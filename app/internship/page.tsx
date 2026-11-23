@@ -5,12 +5,32 @@ import { ChamberHero } from '@/components/chamber-hero'
 import { PageFooter } from '@/components/site-frame'
 import { internships } from '@/lib/site-content'
 
+const practiceAreas = [
+  'Criminal Law',
+  'Civil Litigation',
+  'Divorce & Family Law',
+  'Property Law',
+  'Constitutional Law',
+  'Corporate & Commercial Law',
+  'Contract Law',
+  'Consumer Protection',
+  'Cyber Crime & Technology Law',
+  'Intellectual Property Law',
+  'Arbitration & Mediation',
+  'Labour & Employment Law',
+  'Tax & Financial Law',
+  'Real Estate Law',
+  'Human Rights Law',
+  'Environmental Law',
+] as const
+
 export default function InternshipPage() {
   const submitTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
+    practiceArea: '',
     coverLetter: '',
   })
   const [file, setFile] = useState<File | null>(null)
@@ -32,7 +52,7 @@ export default function InternshipPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!formData.name || !formData.email || !formData.phone) {
+    if (!formData.name || !formData.email || !formData.phone || !formData.practiceArea) {
       setStatus('error')
       setErrorMessage('Please fill in all required fields.')
       return
@@ -68,9 +88,7 @@ export default function InternshipPage() {
         subtitle="Our internship program provides law students with immersive, hands-on litigation experience and professional mentoring."
         primaryHref="#apply-form"
         primaryLabel="Apply now"
-        secondaryHref="/"
-        secondaryLabel="Back home"
-        background="/images/courtroom_hero.png"
+        background="/images/courtroom_hero.webp"
       />
 
       <section className="section story-grid story-grid--internship">
@@ -83,7 +101,7 @@ export default function InternshipPage() {
         </div>
 
         <div className="story-panel story-panel--visual">
-          <div className="story-panel__photo story-panel__photo--tall" style={{ backgroundImage: 'url(/images/internship_study.png)' }} />
+          <div className="story-panel__photo story-panel__photo--tall" style={{ backgroundImage: 'url(/images/internship_study.webp)' }} />
           <div className="story-panel__badge">Open for applications</div>
         </div>
       </section>
@@ -195,6 +213,28 @@ export default function InternshipPage() {
                         <small className="file-info">Supports PDF, DOC, DOCX up to 5MB</small>
                       </div>
                     </div>
+                  </div>
+
+                  <div className="form-group form-group--full">
+                    <label htmlFor="practiceArea" className="form-label">Area of Interest / Legal Role *</label>
+                    <input
+                      type="text"
+                      id="practiceArea"
+                      name="practiceArea"
+                      value={formData.practiceArea}
+                      onChange={handleInputChange}
+                      className="form-input"
+                      placeholder="Select or type a legal area"
+                      list="practice-area-options"
+                      autoComplete="off"
+                      disabled={status === 'submitting'}
+                      required
+                    />
+                    <datalist id="practice-area-options">
+                      {practiceAreas.map((area) => (
+                        <option key={area} value={area} />
+                      ))}
+                    </datalist>
                   </div>
 
                   <div className="form-group form-group--full">

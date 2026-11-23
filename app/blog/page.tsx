@@ -1,5 +1,12 @@
 import { ChamberHero } from '@/components/chamber-hero'
 import { PageFooter } from '@/components/site-frame'
+import { pageMetadata } from '@/lib/seo'
+
+export const metadata = pageMetadata(
+  'Legal Insights and Chamber Updates',
+  'Read legal commentary and chamber updates on arbitration, writ petitions, constitutional law, and Indian jurisprudence.',
+  '/blog',
+)
 
 const posts = [
   {
@@ -25,9 +32,7 @@ export default function BlogPage() {
         subtitle="Insights, commentaries, and legal updates from our practitioners on recent developments in Indian jurisprudence."
         primaryHref="/contact"
         primaryLabel="Contact"
-        secondaryHref="/"
-        secondaryLabel="Back home"
-        background="/images/law_library.png"
+        background="/images/law_library.webp"
       />
 
       <section className="section section-card section-card--notes">

@@ -1,12 +1,5 @@
 import { ChamberHero } from '@/components/chamber-hero'
 import { PageFooter } from '@/components/site-frame'
-import { pageMetadata } from '@/lib/seo'
-
-export const metadata = pageMetadata(
-  'Legal Insights and Chamber Updates',
-  'Read legal commentary and chamber updates on arbitration, writ petitions, constitutional law, and Indian jurisprudence.',
-  '/blog',
-)
 
 const posts = [
   {

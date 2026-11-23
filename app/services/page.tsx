@@ -1,12 +1,5 @@
 import { ChamberHero } from '@/components/chamber-hero'
 import { PageFooter } from '@/components/site-frame'
-import { pageMetadata } from '@/lib/seo'
-
-export const metadata = pageMetadata(
-  'Legal Services',
-  'Explore the legal services and litigation support provided by Shivam Kumar Law Office in New Delhi.',
-  '/services',
-)
 
 const services = [
   ['Constitutional Law', 'Strategic advice and representation in constitutional questions, public law disputes, and matters before constitutional courts.'],

@@ -1,12 +1,5 @@
 import { ChamberHero } from '@/components/chamber-hero'
 import { PageFooter } from '@/components/site-frame'
-import { pageMetadata } from '@/lib/seo'
-
-export const metadata = pageMetadata(
-  'Contact a Senior Advocate in New Delhi',
-  'Contact Shivam Kumar Law Office at Ferozshah Road, New Delhi, for legal representation, litigation counsel, and professional enquiries.',
-  '/contact',
-)
 
 export default function ContactPage() {
   return (

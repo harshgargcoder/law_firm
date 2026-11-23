@@ -1,13 +1,6 @@
 import { ChamberHero } from '@/components/chamber-hero'
 import { PageFooter } from '@/components/site-frame'
 import { chamberNotes, highlights, internships, shivamMilestones, team } from '@/lib/site-content'
-import { pageMetadata } from '@/lib/seo'
-
-export const metadata = pageMetadata(
-  'Senior Advocate and Litigation Counsel in New Delhi',
-  'Shivam Kumar Law Office represents clients in constitutional, civil, commercial, and tribunal matters before courts in New Delhi and across India.',
-  '/',
-)
 
 const heroBg = '/images/courtroom_hero.webp'
 const profileBg = '/images/shivam.webp'

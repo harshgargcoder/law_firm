@@ -1,12 +1,5 @@
 import { ChamberHero } from '@/components/chamber-hero'
 import { PageFooter } from '@/components/site-frame'
-import { pageMetadata } from '@/lib/seo'
-
-export const metadata = pageMetadata(
-  'Life at Shivam Kumar Law Office',
-  'Explore the research, mentoring, mooting, and collaborative chamber culture at Shivam Kumar Law Office.',
-  '/life-at-chamber',
-)
 
 const lifeAtChamber = [
   'Briefing sessions where interns are invited to argue and test their reasoning.',

@@ -2,13 +2,6 @@ import { ChamberHero } from '@/components/chamber-hero'
 import { PageFooter } from '@/components/site-frame'
 import { TeamFlipCard } from '@/components/team-flip-card'
 import { team } from '@/lib/site-content'
-import { pageMetadata } from '@/lib/seo'
-
-export const metadata = pageMetadata(
-  'Our Legal Team',
-  'Meet the advocates, counsels, and associates at Shivam Kumar Law Office, serving clients across litigation and dispute resolution matters.',
-  '/the-team',
-)
 
 export default function TheTeamPage() {
   return (

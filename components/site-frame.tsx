@@ -9,9 +9,9 @@ import { DisclaimerModal } from '@/components/disclaimer-modal'
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/the-team', label: 'The Team' },
-  { href: '/internship', label: 'Internship' },
   { href: '/services', label: 'Services' },
-  { href: '/life-at-chamber', label: 'Life at Chamber' },
+  { href: '/blog', label: 'Blogs' },
+  { href: '/internship', label: 'Internship' },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -114,6 +114,10 @@ export function SiteFrame({
       observer.disconnect()
     }
   }, [pathname])
+
+  if (pathname.startsWith('/admin')) {
+    return <>{children}</>
+  }
 
   return (
     <>

@@ -67,7 +67,18 @@ export default function InternshipPage() {
     if (submitTimerRef.current) {
       clearTimeout(submitTimerRef.current)
     }
+    const submittedFile = file
     submitTimerRef.current = setTimeout(() => {
+      const savedApplications = JSON.parse(window.localStorage.getItem('law-office-internship-applications') || '[]')
+      savedApplications.push({
+        id: crypto.randomUUID(),
+        ...formData,
+        resumeName: submittedFile.name,
+        submittedAt: new Date().toISOString(),
+        status: 'pending',
+      })
+      window.localStorage.setItem('law-office-internship-applications', JSON.stringify(savedApplications))
+      window.dispatchEvent(new Event('internship-application-updated'))
       setStatus('success')
     }, 1500)
   }

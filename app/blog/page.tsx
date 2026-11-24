@@ -1,4 +1,5 @@
 import { ChamberHero } from '@/components/chamber-hero'
+import { ClientFeedbackSection } from '@/components/client-feedback'
 import { PageFooter } from '@/components/site-frame'
 
 const posts = [
@@ -20,15 +21,19 @@ export default function BlogPage() {
   return (
     <main className="site-shell">
       <ChamberHero
-        eyebrow="Blog"
-        title="Notes, updates, and chamber stories."
-        subtitle="Insights, commentaries, and legal updates from our practitioners on recent developments in Indian jurisprudence."
+        eyebrow="Blogs & client experiences"
+        title="Legal notes and client feedback."
+        subtitle="Read practical legal updates from the office and selected feedback shared by clients after review."
         primaryHref="/contact"
         primaryLabel="Contact"
         background="/images/law_library.webp"
       />
 
       <section className="section section-card section-card--notes">
+        <div className="section-card__header">
+          <p className="eyebrow">Legal notes</p>
+          <h3>Clear perspectives on legal issues and practice.</h3>
+        </div>
         <div className="notes-grid">
           {posts.map((post) => (
             <article className="note-card" key={post.title}>
@@ -39,6 +44,8 @@ export default function BlogPage() {
           ))}
         </div>
       </section>
+
+      <ClientFeedbackSection />
 
       <PageFooter />
     </main>
